@@ -1,0 +1,50 @@
+/* A container is wrapped around the product cards, displaying only 3 per row */
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Create a card for a product listing */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  padding: 1rem;
+}
+
+/* Inside the card is a header for a image of the product and product title */
+
+.cardheader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+}
+
+.cardheader img {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Inside the card there is a tag container, rating container and a rewview container. */
+/* Make them stick out a bit */
+.tagcontainer {
+  margin-bottom: 1rem;
+}
+
+.ratingcontainer {
+  margin-bottom: 1rem;
+}
+
+.reviewcontainer {
+  margin-bottom: 1rem;
+}
