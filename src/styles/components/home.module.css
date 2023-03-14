@@ -1,15 +1,22 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
+.main {
+  margin: 0 auto; 
 }
 
-/* A container is wrapped around the product cards, displaying only 3 per row */
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
 
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 }
 
 .card {
@@ -23,8 +30,6 @@ html, body {
   padding: 1rem 1rem;
   margin-bottom: 0.5rem;
 }
-
-/* Inside the card is a header for a image of the product and product title */
 
 .cardheader {
   display: flex;
@@ -54,7 +59,7 @@ html, body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 30%;
+  width: 35%;
   height: 2rem;
   border: none;
   border-radius: 5px;
@@ -62,6 +67,11 @@ html, body {
   color: black;
   font-weight: bold;
   cursor: pointer;
+}
+
+.link:link {
+  text-decoration: none;
+  color: black;
 }
 
 .cardbutton:hover {

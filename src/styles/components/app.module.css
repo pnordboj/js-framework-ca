@@ -1,21 +1,26 @@
-/* Create a header that looks modern and nice */
 
 .header {
   display: flex;
   flex-direction: row;
     background-color: #d2cece;
-    padding: 1rem;
     text-align: center;
     list-style: none;
 }
-
-/* Create a nive modern navbar for the website */
 
 .navbar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+.navbar .carticon li {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
 }
 
 .navbar ul {
@@ -38,19 +43,24 @@ Link, :visited, :active, :hover, :focus {
   color: black;
 }
 
+/* Make footer always at the bottom of the page */
 
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-/* Create a nice modern footer that is always on the bottom of the website */
+.main {
+  flex: 1;
+}
 
 .footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
   background-color: #d2cece;
-  padding: 1rem;
-  margin-top: auto;
-  bottom: 0;
+  padding: 0.5rem;
+  text-align: center;
+  bottom: 0 !important;
 }
 
 .footer p {

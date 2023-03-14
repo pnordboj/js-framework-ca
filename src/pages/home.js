@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import home from '../styles/components/home.module.css';
 import { Link } from 'react-router-dom';
+import { Cartutils } from '../utilities/cart/cartUtils';
 
 const url = 'https://api.noroff.dev/api/v1/online-shop'
 
@@ -15,53 +16,6 @@ function Home() {
         }
         getProducts();
     }, []);
-
-    const [cart, setCart] = useState([]);
-
-    const addToCart = (product) => {
-        const productInCart = cart.find((item) => item.id === product.id);
-        if (productInCart) {
-            setCart(
-                cart.map((item) =>
-                    item.id === product.id ? { ...productInCart, qty: productInCart.qty + 1 } : item
-                )
-            );
-        } else {
-            setCart([...cart, { ...product, qty: 1 }]);
-        }
-    }
-
-    const removeFromCart = (productToRemove) => {
-        setCart(cart.filter((product) => product.id !== productToRemove.id));
-    }
-
-    const increment = (product) => {
-        const productInCart = cart.find((item) => item.id === product.id);
-        setCart(
-            cart.map((item) =>
-                item.id === product.id ? { ...productInCart, qty: productInCart.qty + 1 } : item
-            )
-        );
-    }
-
-    const decrement = (product) => {
-        const productInCart = cart.find((item) => item.id === product.id);
-        if (productInCart.qty === 1) {
-            removeFromCart(productInCart);
-        } else {
-            setCart(
-                cart.map((item) =>
-                    item.id === product.id ? { ...productInCart, qty: productInCart.qty - 1 } : item
-                )
-            );
-        }
-    }
-
-    const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-
-    const checkout = () => {
-        setCart([]);
-    }
 
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -97,13 +51,24 @@ function Home() {
     }
 
     return (
-    <div className={home.Home}>
-        <h1>Products</h1>
+    <div className={home.main}>
+        <div className={home.header}>
+            <h1>All Products</h1>
+            <div className={home.searchbox}>
+                <input
+                    className={home.searchbar}
+                    type="text"
+                    placeholder="Search"
+                    value={searchTerm}
+                    onChange={handleChange}
+                />
+            </div>
+        </div>
         <div className={home.container}>
-            {products.map((product) => {
-            const { id, title, description, imageUrl } = product;
-            return (
-                <div key={id} className={home.card}>
+            {results.map((product) => {
+                const { id, title, description, imageUrl } = product;
+                return (
+                    <div key={id} className={home.card}>
                     <img src={imageUrl} alt={title} className={home.productimage} />
                     <div className={home.cardheader}>
                         <h2>{title}</h2>
@@ -111,12 +76,16 @@ function Home() {
                     <p>{description}</p>
                     {discountCheck(product)}
                     <div className={home.cardfooter}>
-                        <button className={home.cardbutton}>Add to cart</button>
-                        <button onClick={openProduct} className={home.cardbutton}>View</button>
+                        <button onClick={Cartutils.addToCart} className={home.cardbutton}>Add to cart</button>
+                        <button className={home.cardbutton}>
+                            <Link className={home.link} to={`/product/${product.id}`}>
+                                View
+                            </Link>
+                        </button>
                     </div>
                 
                 </div>
-            ) 
+                )
             })}
         </div>
     </div>
