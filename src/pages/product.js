@@ -18,38 +18,56 @@ function Product() {
         getProduct();
     }, []);
 
-    const { reviews } = results;
+    const discountCheck = (product) => {
+        if (product.discountedPrice === product.price) {
+            return (
+                <div className={product.price}>
+                    <p>Price: ${product.price}</p>
+                </div>
+            )
+        } else {
+            return (
+                <div className={product.price}>
+                    <p className={product.discount}>{product.price}</p>
+                    <p>Price: ${product.discountedPrice}</p>
+                </div>
+            )
+        }
+    }
 
-    let review = reviews.map((review) => {
-    });
-
-    console.log(review);
-
-
+    function addToCart(product) {
+        console.log(product);
+    }
 
     return (
         <div className={product.main}>
             <div key={results.id} className={product.product}>
-                <div className={product.image}>
-                    <img src={results.imageUrl} alt={results.title} />
-                </div>
-                <div className={product.info}>
-                    <h1>{results.title}</h1>
-                    <p>{results.description}</p>
-                    <div className={product.price}>
-                        <p>{results.price}</p>
-                        <p>{results.discountedPrice}</p>
+                <div className={product.container}>
+                    <div className={product.image}>
+                        <img src={results.imageUrl} alt={results.title} />
                     </div>
-                </div>
-                <div className={product.footer}>
-                    <div className={product.rating}>
-                        <p>{results.rating}</p>
-                    </div>
-                    <div className={product.tags}>
-                        <p>{results.tags}</p>
-                    </div>
-                    <div className={product.reviews}>
+                    <div className={product.info}>
+                        <h1>{results.title}</h1>
+                        <p>{results.description}</p>
+                        <div className={product.otherinfo}>
+                            <div className={product.price}>
+                                {discountCheck(results)}
+                                <button onClick={addToCart(product)} className={product.button}>
+                                    Add to cart
+                                </button>
+                            </div>
+                            <div className={product.footer}>        
+                                <div className={product.rating}>
+                                    <p>Rating: {results.rating}</p>
+                                </div>
+                                <div className={product.tags}>
+                                    <p>Tags: {results.tags}</p>
+                                </div>
+                                <div className={product.reviews}>
 
+                                </div>    
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
