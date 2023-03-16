@@ -1,4 +1,41 @@
 
+/* Color Scheme for all Pages */
+
+html, body {
+  background-color: #F5F5F5;
+  font-family: Arial, sans-serif;
+  color: #2C3E50;
+}
+
+button, a {
+  color: #FF6F61;
+}
+
+h1, h2, h3, h4, h5, h6, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
+  color: #3F88C5;
+}
+a {
+  color: #3498DB;
+  text-decoration: none;
+}
+  
+a:hover {
+  color: #F1C40F;
+}
+
+p {
+  color: #333333;
+}
+
+/* --- End --- */
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -12,15 +49,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: #2C3E50;
   width: 100%;
-}
-
-.navbar .carticon li {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 20%;
 }
 
 .navbar ul {
@@ -29,27 +59,34 @@
   gap: 1rem;
   list-style: none;
   text-decoration: none;
-  color: black;
 }
 
-.navbar li ul, :link {
+.navitem:visited, .navitem:active, .navitem:link {
   list-style: none;
   text-decoration: none;
+  color: #FFFFFF;
 }
 
-Link, :visited, :active, :hover, :focus {
-  list-style: none;
-  text-decoration: none;
-  color: black;
+.navitem:hover {
+  color: #F1C40F;
 }
 
-/* Make footer always at the bottom of the page */
+.navitem:active {
+  color: #F1C40F;
+}
 
-html,
-body {
+.navbar .cart li {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  flex-direction: row;
+  justify-content: center;
+  margin-right: 3rem;
+  width: 100%;
+}
+
+.carticon {
+  font-size: 2rem;
+  color: #FFFFFF;
+
 }
 
 .main {
@@ -57,7 +94,7 @@ body {
 }
 
 .footer {
-  background-color: #d2cece;
+  background-color: #2C3E50;
   padding: 0.5rem;
   text-align: center;
   bottom: 0 !important;
@@ -65,4 +102,5 @@ body {
 
 .footer p {
   margin: 0;
+  color: #FFFFFF;
 }

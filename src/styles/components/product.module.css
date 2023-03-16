@@ -1,5 +1,6 @@
 main {
     min-height: 100vh;
+    background-color: #F5F5F5;
 }
 
 .product {
@@ -47,7 +48,7 @@ main {
 .button {
     display: flex;
     flex-direction: row;
-    background-color: #6186b3;
+    background-color: #FF6F61;
     color: #fff;
     padding: 1.5rem 1.5rem;
     border-radius: 0.5rem;
@@ -59,9 +60,8 @@ main {
 }
 
 .button:hover {
-    background-color: #3b72b5;
+    background-color: #FF5A46;
     transform: scale(1.05);
-    color: aliceblue;
 }
 
 .otherinfo {
@@ -84,17 +84,14 @@ main {
 }
 
 .rating {
-    width: 100%;
     margin-bottom: 0.5rem;
-    text-align: center;
-    border-radius: 15px;
-    background-color: #6186b3;
 }
 
-.tags {
+.tags, .rating, .rating p, .tags p {
+    color: #fff;
     width: 100%;
     text-align: center;
     border-radius: 15px;
-    background-color: #6186b3;
+    background-color: #FF6F61;
 }
 

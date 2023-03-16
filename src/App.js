@@ -3,6 +3,7 @@ import './App.css';
 import styles from './styles/components/app.module.css';
 import React, { useState, useEffect } from 'react';
 import { Route, Link, Routes, Outlet } from 'react-router-dom';
+import { IoCartOutline } from 'react-icons/io5';
 
 // Utilities
 import { Cartutils } from './utilities/cart/cartUtils';
@@ -18,21 +19,21 @@ function Nav() {
     <nav className={styles.navbar}>
       <ul>
         <li>
-          <Link to='/'>Home</Link>
+          <Link to='/' className={styles.navitem}>Home</Link>
         </li>
         <li>
-          <Link to='/product'>Product</Link>
+          <Link to='/product' className={styles.navitem}>Product</Link>
         </li>
         <li>
-          <Link to='/contact'>Contact</Link>
+          <Link to='/contact' className={styles.navitem}>Contact</Link>
         </li>
       </ul>
-      <ul className={styles.carticon}>
+      <ul className={styles.cart}>
         <li>
           <div className={styles.cartamount}>
             <p>{Cartutils.total}</p>
           </div>
-          <Link to='/cart'>Cart</Link>
+          <Link to='/cart' className={styles.carticon}><IoCartOutline /></Link>
         </li>
       </ul>
     </nav>

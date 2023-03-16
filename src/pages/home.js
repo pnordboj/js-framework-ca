@@ -33,14 +33,14 @@ function Home() {
         if (product.discountedPrice === product.price) {
             return (
                 <div className={home.price}>
-                    <p>{product.price}</p>
+                    <p>Price: ${product.price}</p>
                 </div>
             )
         } else {
             return (
                 <div className={home.price}>
-                    <p className={home.discount}>{product.price}</p>
-                    <p>{product.discountedPrice}</p>
+                    <p className={home.discount}>${product.price}</p>
+                    <p>Current Price: ${product.discountedPrice}</p>
                 </div>
             )
         }
@@ -69,7 +69,7 @@ function Home() {
                 const { id, title, description, imageUrl } = product;
                 return (
                     <div key={id} className={home.card}>
-                    <img src={imageUrl} alt={title} className={home.productimage} />
+                    <img src={imageUrl} alt={title} />
                     <div className={home.cardheader}>
                         <h2>{title}</h2>
                     </div>
