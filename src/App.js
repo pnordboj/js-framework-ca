@@ -22,9 +22,6 @@ function Nav() {
           <Link to='/' className={styles.navitem}>Home</Link>
         </li>
         <li>
-          <Link to='/product' className={styles.navitem}>Product</Link>
-        </li>
-        <li>
           <Link to='/contact' className={styles.navitem}>Contact</Link>
         </li>
       </ul>
