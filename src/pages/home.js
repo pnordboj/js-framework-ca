@@ -1,11 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import home from '../styles/components/home.module.css';
 import { Link } from 'react-router-dom';
-import { Cartutils } from '../utilities/cart/cartUtils';
+import Product from './product';
 
 const url = 'https://api.noroff.dev/api/v1/online-shop'
 
 function Home() {
+
+    const [cart, setCart] = useState([]);
+
+    const [isShow, setIsShow] = useState(false);
+
+    const showToast = () => {
+        setIsShow(true);
+        setTimeout(() => {
+            setIsShow(false);
+        }, 2000);
+    }
+
+    const addToCart = (product) => {
+        if (cart.includes(product.id)) {
+            return;
+        }
+        var arr = [...cart];
+        arr.push(product.id);
+        setCart(arr);
+        localStorage.setItem('cart', JSON.stringify(arr));
+        showToast();
+    }
 
     const [products, setProducts] = useState([]);
     useEffect(() => {
@@ -68,26 +90,31 @@ function Home() {
             {results.map((product) => {
                 const { id, title, description, imageUrl } = product;
                 return (
-                    <div key={id} className={home.card}>
-                    <img src={imageUrl} alt={title} />
-                    <div className={home.cardheader}>
-                        <h2>{title}</h2>
+                        <div key={id} className={home.card}>
+                            <img src={imageUrl} alt={title} />
+                            <div className={home.cardheader}>
+                                <h2>{title}</h2>
+                            </div>
+                            <p>{description}</p>
+                            {discountCheck(product)}
+                        
+                        <div className={home.cardfooter}>
+                            <button onClick={() => addToCart(product)} className={home.cardbutton}>Add to cart</button>
+                            <button className={home.cardbutton}>
+                                <Link className={home.link} to={`/product/${product.id}`}>
+                                    View
+                                </Link>
+                            </button>
+                        </div>
                     </div>
-                    <p>{description}</p>
-                    {discountCheck(product)}
-                    <div className={home.cardfooter}>
-                        <button onClick={Cartutils.addToCart} className={home.cardbutton}>Add to cart</button>
-                        <button className={home.cardbutton}>
-                            <Link className={home.link} to={`/product/${product.id}`}>
-                                View
-                            </Link>
-                        </button>
-                    </div>
-                
-                </div>
                 )
             })}
         </div>
+        {isShow && (
+            <div className={home.toast}>
+                <p>Added to cart</p>
+            </div>        
+        )};
     </div>
     );
 }

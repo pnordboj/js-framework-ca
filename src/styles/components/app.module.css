@@ -86,7 +86,15 @@ body {
 .carticon {
   font-size: 2rem;
   color: #FFFFFF;
+}
 
+.cartamount {
+  background-color: #FF6F61;
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  margin-left: 1rem;
 }
 
 .main {

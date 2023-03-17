@@ -150,3 +150,16 @@
   background-color: antiquewhite;
   padding: 1rem 1rem;
 }
+
+.toast {
+  position: fixed;
+  top: 50px;
+  right: 30px;
+  z-index: 9999;
+  display: inline-flex;
+  padding: 10px 20px;
+  background-color: #FF6F61;
+  color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+}

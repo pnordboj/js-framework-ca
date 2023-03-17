@@ -9,6 +9,18 @@ function Product() {
 
     const [results, setProduct] = useState([]);
 
+    const [cart, setCart] = useState([]);
+
+    const addToCart = (product) => {
+        if (cart.includes(product.id)) {
+            return;
+        }
+        var arr = [...cart];
+        arr.push(product.id);
+        setCart(arr);
+        localStorage.setItem('cart', JSON.stringify(arr));
+    }
+
     useEffect(() => {
         const getProduct = async () => {
             const response = await fetch(url);
@@ -35,10 +47,6 @@ function Product() {
         }
     }
 
-    function addToCart(product) {
-        console.log(product);
-    }
-
     return (
         <div className={product.main}>
             <div key={results.id} className={product.product}>
@@ -52,7 +60,7 @@ function Product() {
                         <div className={product.otherinfo}>
                             <div className={product.price}>
                                 {discountCheck(results)}
-                                <button onClick={addToCart(product)} className={product.button}>
+                                <button onClick={() => addToCart(product)} className={product.button}>
                                     Add to cart
                                 </button>
                             </div>
