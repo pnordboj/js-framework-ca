@@ -12,31 +12,17 @@ import Product from './pages/product';
 import Contact from './pages/contact';
 import Cart from './pages/cart';
 
-
-const useStore = create(set => ({
-  cart: [],
-  addToCart: (product) => set(state => {
-    const cart = [...state.cart];
-    cart.push(product);
-    return { cart };
-  }),
-  removeFromCart: (product) => set(state => {
-    const cart = [...state.cart];
-    const index = cart.indexOf(product);
-    cart.splice(index, 1);
-    return { cart };
-  }),
-  cartAmount: () => {
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    if (cart === null) {
-      return 0;
-    } else {
-      return cart.length;
-    } 
-  }
-}));
+function cartAmount() {
+  const cart = JSON.parse(localStorage.getItem('cart'));
+  if (cart === null) {
+    return 0;
+  } else {
+    return cart.length;
+  } 
+}
 
 function Nav() {
+  
 
   return (
     <nav className={styles.navbar}>
@@ -51,7 +37,7 @@ function Nav() {
       <ul className={styles.cart}>
         <li>
           <div className={styles.cartamount}>
-            {useStore(state => state.cartAmount())}
+            {cartAmount()}
           </div>
           <Link to='/cart' className={styles.carticon}><IoCartOutline /></Link>
         </li>

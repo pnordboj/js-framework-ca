@@ -19,10 +19,12 @@ function Home() {
     }
 
     const addToCart = (product) => {
-        if (cart.includes(product.id)) {
+        let cartArr = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cartArr.includes(product.id)) {
             return;
         }
         var arr = [...cart];
+        console.log(arr);
         arr.push(product.id);
         setCart(arr);
         localStorage.setItem('cart', JSON.stringify(arr));
@@ -55,21 +57,43 @@ function Home() {
         if (product.discountedPrice === product.price) {
             return (
                 <div className={home.price}>
-                    <p>Price: ${product.price}</p>
+                    <p>{product.price} NOK</p>
                 </div>
             )
         } else {
             return (
                 <div className={home.price}>
-                    <p className={home.discount}>${product.price}</p>
-                    <p>Current Price: ${product.discountedPrice}</p>
+                    <label className={home.normalPrice}>{product.price} NOK</label>
+                    <label className={home.discountPrice}>{product.discountedPrice} NOK</label>
                 </div>
             )
         }
     }
 
+    const imageDicount = (product) => {
+        if (product.discountedPrice === product.price) {
+            <img src={product.imageUrl} alt={product.title} />
+        } else {
+            <img src={product.imageUrl} alt={product.title} />
+        }
+    }
+
     const openProduct = (product) => {
         <Link to={`/product/${product.id}`} />
+    }
+
+    const discountPercentage = (product) => {
+        const discount = (product.price - product.discountedPrice) / product.price * 100;
+        if (discount === 0) {
+            return;
+        } else {
+            const percent = Math.round(discount);
+            return (
+                <div className={home.discountWrap}>
+                    <p>Sale {percent}% off</p>
+                </div>
+            )
+        }
     }
 
     return (
@@ -88,16 +112,17 @@ function Home() {
         </div>
         <div className={home.container}>
             {results.map((product) => {
-                const { id, title, description, imageUrl } = product;
+                const { id, title, imageUrl } = product;
                 return (
-                        <div key={id} className={home.card}>
+                    <div key={id} className={home.card}>
+                        <Link to={`/product/${product.id}`} className={home.cardHeader}>
+                            {discountPercentage(product)}
                             <img src={imageUrl} alt={title} />
-                            <div className={home.cardheader}>
+                            <div className={home.cardTitle}>
                                 <h2>{title}</h2>
                             </div>
-                            <p>{description}</p>
                             {discountCheck(product)}
-                        
+                        </Link>
                         <div className={home.cardfooter}>
                             <button onClick={() => addToCart(product)} className={home.cardbutton}>Add to cart</button>
                             <button className={home.cardbutton}>

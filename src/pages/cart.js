@@ -53,13 +53,13 @@ function Cart() {
                 if (product.id === id) {
                   return (
                     <div key={product.id} className={style.cartItem}>
-                      <img src={product.imageUrl} alt={product.title} />
+                      <img className={product.cartImage} src={product.imageUrl} alt={product.title} />
                       <div className={style.cartItemInfo}>
                         <h2>{product.title}</h2>
                         <p>{product.description}</p>
                         <p>Price: ${product.price}</p>
                       </div>
-                      <button className={style.button} onClick={() => removeFromCart(product)}>Remove</button>
+                      <button className={style.removeButton} onClick={() => removeFromCart(product)}>Remove</button>
                     </div>
                   )
                 }
@@ -70,7 +70,7 @@ function Cart() {
         <div className={style.cartTotal}>
           <h2>Total: ${cartTotal()}</h2>
           <Link to="/checkout">
-            <button className={style.checkoutbutton}>Checkout</button>
+            <button className={style.checkoutButton}>Checkout</button>
           </Link>
         </div>
       </div>
