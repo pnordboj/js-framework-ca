@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import home from '../styles/components/home.module.css';
 import { Link } from 'react-router-dom';
 import Product from './product';
+import { cartAmount } from '../App';
 
 const url = 'https://api.noroff.dev/api/v1/online-shop'
 
@@ -10,6 +11,14 @@ function Home() {
     const [cart, setCart] = useState([]);
 
     const [isShow, setIsShow] = useState(false);
+    const [alreadyAdded, setAlreadyAdded] = useState(false);
+
+    const showAdded = () => {
+        setAlreadyAdded(true);
+        setTimeout(() => {
+            setAlreadyAdded(false);
+        }, 2000);
+    }
 
     const showToast = () => {
         setIsShow(true);
@@ -21,6 +30,7 @@ function Home() {
     const addToCart = (product) => {
         let cartArr = JSON.parse(localStorage.getItem('cart')) || [];
         if (cartArr.includes(product.id)) {
+            showAdded();
             return;
         }
         var arr = [...cart];
@@ -29,6 +39,7 @@ function Home() {
         setCart(arr);
         localStorage.setItem('cart', JSON.stringify(arr));
         showToast();
+        cartAmount();
     }
 
     const [products, setProducts] = useState([]);
@@ -68,18 +79,6 @@ function Home() {
                 </div>
             )
         }
-    }
-
-    const imageDicount = (product) => {
-        if (product.discountedPrice === product.price) {
-            <img src={product.imageUrl} alt={product.title} />
-        } else {
-            <img src={product.imageUrl} alt={product.title} />
-        }
-    }
-
-    const openProduct = (product) => {
-        <Link to={`/product/${product.id}`} />
     }
 
     const discountPercentage = (product) => {
@@ -139,6 +138,11 @@ function Home() {
             <div className={home.toast}>
                 <p>Added to cart</p>
             </div>        
+        )};
+        {alreadyAdded && (
+            <div className={home.toast}>
+                <p>Already added to cart</p>
+            </div>
         )};
     </div>
     );

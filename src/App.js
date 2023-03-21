@@ -12,7 +12,7 @@ import Product from './pages/product';
 import Contact from './pages/contact';
 import Cart from './pages/cart';
 
-function cartAmount() {
+export function cartAmount() {
   const cart = JSON.parse(localStorage.getItem('cart'));
   if (cart === null) {
     return 0;
