@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import home from '../styles/components/home.module.css';
+import home from './Home.module.css';
 import { Link } from 'react-router-dom';
-import Product from './product';
-import { cartAmount } from '../App';
+import Product from '../product/Product';
+import { cartAmount } from '../../App';
 
 const url = 'https://api.noroff.dev/api/v1/online-shop'
 

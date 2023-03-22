@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
-import style from "../styles/components/cart.module.css"
+import style from "./Cart.module.css"
 
 const url = "https://api.noroff.dev/api/v1/online-shop";
 

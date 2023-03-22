@@ -1,16 +1,17 @@
 // React Components
-import './App.css';
-import styles from './styles/components/app.module.css';
+import styles from './App.module.css';
 import React, { useState, useEffect } from 'react';
 import { Route, Link, Routes, Outlet } from 'react-router-dom';
 import { IoCartOutline } from 'react-icons/io5';
 import { create } from 'zustand';
 
 // Pages
-import Home from './pages/home';
-import Product from './pages/product';
-import Contact from './pages/contact';
-import Cart from './pages/cart';
+import Home from './pages/home/Home';
+import Product from './pages/product/Product';
+import Contact from './pages/contact/Contact';
+import Cart from './pages/cart/Cart';
+import Checkout from './pages/checkout/Checkout';
+import Missing from './pages/missing/Missing';
 
 export function cartAmount() {
   const cart = JSON.parse(localStorage.getItem('cart'));
@@ -56,7 +57,7 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className={styles.footer}>
+    <footer>
       <p>Footer</p>
     </footer>
   )
@@ -81,6 +82,8 @@ function App() {
             <Route path="product/:id" element={<Product />} />
             <Route path="contact" element={<Contact />} />
             <Route path="cart" element={<Cart />} />
+            <Route path="checkout" element={<Checkout />} />
+            <Route path="*" element={<Missing />} />
           </Route>
         </Routes>
       </div>

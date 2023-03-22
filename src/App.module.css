@@ -1,12 +1,11 @@
-
 /* Color Scheme for all Pages */
 
 html, body {
-  background-color: #F5F5F5;
-  font-family: Arial, sans-serif;
-  color: #2C3E50;
-}
-
+    background-color: #F5F5F5;
+    font-family: Arial, sans-serif;
+    color: #2C3E50;
+  }
+  
 button, a {
   color: #FF6F61;
 }
@@ -39,9 +38,9 @@ body {
 .header {
   display: flex;
   flex-direction: row;
-    background-color: #d2cece;
-    text-align: center;
-    list-style: none;
+  background-color: #d2cece;
+  text-align: center;
+  list-style: none;
 }
 
 .navbar {
@@ -101,14 +100,18 @@ body {
   flex: 1;
 }
 
-.footer {
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   background-color: #2C3E50;
   padding: 0.5rem;
   text-align: center;
-  bottom: 0 !important;
 }
 
-.footer p {
+footer p {
   margin: 0;
   color: #FFFFFF;
 }
+  
