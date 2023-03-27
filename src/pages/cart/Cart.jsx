@@ -54,6 +54,7 @@ function Cart({ setCartAmount }) {
         <div className={style.cartItems}>
           {cart.map((id) => {
             return (
+              // eslint-disable-next-line array-callback-return
               products.map((product) => {
                 if (product.id === id) {
                   return (
