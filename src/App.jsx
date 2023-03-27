@@ -3,7 +3,6 @@ import styles from './App.module.css';
 import React, { useState, useEffect } from 'react';
 import { Route, Link, Routes, Outlet } from 'react-router-dom';
 import { IoCartOutline } from 'react-icons/io5';
-import { create } from 'zustand';
 
 // Pages
 import Home from './pages/home/Home';
@@ -13,23 +12,13 @@ import Cart from './pages/cart/Cart';
 import Checkout from './pages/checkout/Checkout';
 import Missing from './pages/missing/Missing';
 
-export function cartAmount() {
-  const cart = JSON.parse(localStorage.getItem('cart'));
-  if (cart === null) {
-    return 0;
-  } else {
-    return cart.length;
-  } 
-}
-
-function Nav() {
-  
+function Nav({ cartAmount }) {
 
   return (
     <nav className={styles.navbar}>
       <ul>
         <li>
-          <Link to='/' className={styles.navitem}>Home</Link>
+          <Link to='/' className={styles.navitem}>Products</Link>
         </li>
         <li>
           <Link to='/contact' className={styles.navitem}>Contact</Link>
@@ -38,7 +27,7 @@ function Nav() {
       <ul className={styles.cart}>
         <li>
           <div className={styles.cartamount}>
-            {cartAmount()}
+            {cartAmount}
           </div>
           <Link to='/cart' className={styles.carticon}><IoCartOutline /></Link>
         </li>
@@ -47,26 +36,27 @@ function Nav() {
   )
 }
 
-function Header() {
+function Header({ cartAmount }) {
   return (
     <header className={styles.header}>
-      <Nav />
+      <Nav cartAmount={cartAmount} />
     </header>
   )
 }
 
+
 function Footer() {
   return (
     <footer>
-      <p>Footer</p>
+      <p>&copy; Online Store 2023</p>
     </footer>
   )
 }
 
-function Layout() {
+function Layout({ children, cartAmount }) {
   return (
     <div>
-      <Header />
+      <Header cartAmount={cartAmount} />
       <Outlet />
       <Footer />
     </div>
@@ -74,15 +64,30 @@ function Layout() {
 }
 
 function App() {
+
+  const [cartAmount , setCartAmount] = useState(0);
+
+  useEffect(() => {
+    const getCartAmount = () => {
+      const cart = JSON.parse(localStorage.getItem('cart'));
+      if (cart !== null) {
+        setCartAmount(cart.length);
+      } else {
+        setCartAmount(0);
+      }
+    };
+    getCartAmount();
+  }, []);
+
   return (
       <div>
         <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="product/:id" element={<Product />} />
+          <Route path="/" element={<Layout cartAmount={cartAmount} />}>
+            <Route index element={<Home setCartAmount={setCartAmount} />} />
+            <Route path="product/:id" element={<Product setCartAmount={setCartAmount} />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="checkout" element={<Checkout />} />
+            <Route path="cart" element={<Cart setCartAmount={setCartAmount} />} />
+            <Route path="checkout" element={<Checkout setCartAmount={setCartAmount} />} />
             <Route path="*" element={<Missing />} />
           </Route>
         </Routes>

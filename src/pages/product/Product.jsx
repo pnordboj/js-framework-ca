@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import product from './Product.module.css';
 import { useParams } from 'react-router-dom';
 
-function Product() {
+function Product({ setCartAmount }) {
 
     let params = useParams();
     let url = `https://api.noroff.dev/api/v1/online-shop/${params.id}`;
@@ -11,14 +11,27 @@ function Product() {
 
     const [cart, setCart] = useState([]);
 
+    useEffect(() => {
+        const getCart = async () => {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            if (cart !== null) {
+                setCart(cart);
+                setCartAmount(cart.length);
+            }
+        }
+        getCart();
+    }, [setCartAmount]);
+
     const addToCart = (product) => {
+        
         if (cart.includes(product.id)) {
             return;
+        } else {
+            const newCart = [...cart, product.id];
+            localStorage.setItem('cart', JSON.stringify(newCart));
+            setCart(newCart);
+            setCartAmount(newCart.length);
         }
-        var arr = [...cart];
-        arr.push(product.id);
-        setCart(arr);
-        localStorage.setItem('cart', JSON.stringify(arr));
     }
 
     useEffect(() => {
@@ -60,7 +73,7 @@ function Product() {
                         <div className={product.otherinfo}>
                             <div className={product.price}>
                                 {discountCheck(results)}
-                                <button onClick={() => addToCart(product)} className={product.button}>
+                                <button onClick={() => addToCart(results)} className={product.button}>
                                     Add to cart
                                 </button>
                             </div>

@@ -4,7 +4,7 @@ import style from "./Cart.module.css"
 
 const url = "https://api.noroff.dev/api/v1/online-shop";
 
-function Cart() {
+function Cart({ setCartAmount }) {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -18,16 +18,21 @@ function Cart() {
   }, []);
 
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cart"));
-    setCart(cart);
-  }, [])
+    const getCart = async () => {
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        if (cart !== null) {
+            setCart(cart);
+            setCartAmount(cart.length);
+        }
+    }
+    getCart();
+  }, [setCartAmount]);
 
   const removeFromCart = (product) => {
-    var arr = [...cart];
-    var index = arr.indexOf(product.id);
-    arr.splice(index, 1);
-    setCart(arr);
-    localStorage.setItem("cart", JSON.stringify(arr));
+    const newCart = cart.filter((id) => id !== product.id);
+    localStorage.setItem('cart', JSON.stringify(newCart));
+    setCart(newCart);
+    setCartAmount(newCart.length);
   }
 
   const cartTotal = () => {

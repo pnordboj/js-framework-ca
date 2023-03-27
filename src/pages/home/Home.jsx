@@ -2,13 +2,10 @@ import React, { useState, useEffect } from 'react';
 import home from './Home.module.css';
 import { Link } from 'react-router-dom';
 import Product from '../product/Product';
-import { cartAmount } from '../../App';
 
 const url = 'https://api.noroff.dev/api/v1/online-shop'
 
-function Home() {
-
-    const [cart, setCart] = useState([]);
+const Home = ({ setCartAmount }) => {
 
     const [isShow, setIsShow] = useState(false);
     const [alreadyAdded, setAlreadyAdded] = useState(false);
@@ -27,19 +24,31 @@ function Home() {
         }, 2000);
     }
 
+    const [cart, setCart] = useState([]);
+
+    useEffect(() => {
+        const getCart = async () => {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            if (cart !== null) {
+                setCart(cart);
+                setCartAmount(cart.length);
+            }
+        }
+        getCart();
+    }, [setCartAmount]);
+
     const addToCart = (product) => {
-        let cartArr = JSON.parse(localStorage.getItem('cart')) || [];
-        if (cartArr.includes(product.id)) {
+        const exist = cart.find((x) => x === product.id);
+        if (exist) {
             showAdded();
             return;
+        } else {
+            const newCart = [...cart, product.id];
+            localStorage.setItem('cart', JSON.stringify(newCart));
+            setCart(newCart);
+            setCartAmount(newCart.length);
+            showToast();
         }
-        var arr = [...cart];
-        console.log(arr);
-        arr.push(product.id);
-        setCart(arr);
-        localStorage.setItem('cart', JSON.stringify(arr));
-        showToast();
-        cartAmount();
     }
 
     const [products, setProducts] = useState([]);

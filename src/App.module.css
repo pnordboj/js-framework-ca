@@ -90,10 +90,14 @@ body {
 .cartamount {
   background-color: #FF6F61;
   border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #FFFFFF;
-  font-size: 1rem;
-  padding: 0.5rem 0.75rem;
-  margin-left: 1rem;
+  font-size: 0.8rem;
+  margin-left: -0.5rem;
 }
 
 .main {
