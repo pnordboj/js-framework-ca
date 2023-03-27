@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import home from './Home.module.css';
 import { Link } from 'react-router-dom';
-import Product from '../product/Product';
 
 const url = 'https://api.noroff.dev/api/v1/online-shop'
 
