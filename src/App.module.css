@@ -109,12 +109,14 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
+  overflow: hidden;
   background-color: #2C3E50;
   padding: 0.5rem;
   text-align: center;
 }
 
 footer p {
+  overflow: hidden;
   margin: 0;
   color: #FFFFFF;
 }

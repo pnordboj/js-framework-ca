@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import home from './Home.module.css';
+import style from './Home.module.css';
 import { Link } from 'react-router-dom';
 
 const url = 'https://api.noroff.dev/api/v1/online-shop'
@@ -75,15 +75,15 @@ const Home = ({ setCartAmount }) => {
     const discountCheck = (product) => {
         if (product.discountedPrice === product.price) {
             return (
-                <div className={home.price}>
+                <div className={style.price}>
                     <p>{product.price} NOK</p>
                 </div>
             )
         } else {
             return (
-                <div className={home.price}>
-                    <label className={home.normalPrice}>{product.price} NOK</label>
-                    <label className={home.discountPrice}>{product.discountedPrice} NOK</label>
+                <div className={style.price}>
+                    <label className={style.normalPrice}>{product.price} NOK</label>
+                    <label className={style.discountPrice}>{product.discountedPrice} NOK</label>
                 </div>
             )
         }
@@ -96,7 +96,7 @@ const Home = ({ setCartAmount }) => {
         } else {
             const percent = Math.round(discount);
             return (
-                <div className={home.discountWrap}>
+                <div className={style.discountWrap}>
                     <p>Sale {percent}% off</p>
                 </div>
             )
@@ -104,12 +104,12 @@ const Home = ({ setCartAmount }) => {
     }
 
     return (
-    <div className={home.main}>
-        <div className={home.header}>
+    <div className={style.main}>
+        <div className={style.header}>
             <h1>All Products</h1>
-            <div className={home.searchbox}>
+            <div className={style.searchBox}>
                 <input
-                    className={home.searchbar}
+                    className={style.searchBar}
                     type="text"
                     placeholder="Search"
                     value={searchTerm}
@@ -117,23 +117,23 @@ const Home = ({ setCartAmount }) => {
                 />
             </div>
         </div>
-        <div className={home.container}>
+        <div className={style.container}>
             {results.map((product) => {
                 const { id, title, imageUrl } = product;
                 return (
-                    <div key={id} className={home.card}>
-                        <Link to={`/product/${product.id}`} className={home.cardHeader}>
+                    <div key={id} className={style.card}>
+                        <Link to={`/product/${product.id}`} className={style.cardHeader}>
                             {discountPercentage(product)}
                             <img src={imageUrl} alt={title} />
-                            <div className={home.cardTitle}>
+                            <div className={style.cardTitle}>
                                 <h2>{title}</h2>
                             </div>
                             {discountCheck(product)}
                         </Link>
-                        <div className={home.cardfooter}>
-                            <button onClick={() => addToCart(product)} className={home.cardbutton}>Add to cart</button>
-                            <button className={home.cardbutton}>
-                                <Link className={home.link} to={`/product/${product.id}`}>
+                        <div className={style.cardFooter}>
+                            <button onClick={() => addToCart(product)} className={style.cardButton}>Add to cart</button>
+                            <button className={style.cardButton}>
+                                <Link className={style.link} to={`/product/${product.id}`}>
                                     View
                                 </Link>
                             </button>
@@ -143,12 +143,12 @@ const Home = ({ setCartAmount }) => {
             })}
         </div>
         {isShow && (
-            <div className={home.toast}>
+            <div className={style.toast}>
                 <p>Added to cart</p>
             </div>        
         )};
         {alreadyAdded && (
-            <div className={home.toast}>
+            <div className={style.toast}>
                 <p>Already added to cart</p>
             </div>
         )};

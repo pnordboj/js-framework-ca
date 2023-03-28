@@ -44,6 +44,7 @@ function Cart({ setCartAmount }) {
         }
       });
     });
+    total = total.toFixed(2);
     return total;
   }
 

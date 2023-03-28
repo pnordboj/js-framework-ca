@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import product from './Product.module.css';
+import style from './Product.module.css';
 import { useParams } from 'react-router-dom';
 
 function Product({ setCartAmount }) {
@@ -62,30 +62,30 @@ function Product({ setCartAmount }) {
     }
 
     return (
-        <div className={product.main}>
-            <div key={results.id} className={product.product}>
-                <div className={product.container}>
-                    <div className={product.image}>
+        <div className={style.main}>
+            <div key={results.id} className={style.product}>
+                <div className={style.container}>
+                    <div className={style.image}>
                         <img src={results.imageUrl} alt={results.title} />
                     </div>
-                    <div className={product.info}>
+                    <div className={style.info}>
                         <h1>{results.title}</h1>
                         <p>{results.description}</p>
-                        <div className={product.otherinfo}>
-                            <div className={product.price}>
+                        <div className={style.otherInfo}>
+                            <div className={style.price}>
                                 {discountCheck(results)}
-                                <button onClick={() => addToCart(results)} className={product.button}>
+                                <button onClick={() => addToCart(results)} className={style.button}>
                                     Add to cart
                                 </button>
                             </div>
-                            <div className={product.footer}>        
-                                <div className={product.rating}>
+                            <div className={style.footer}>        
+                                <div className={style.rating}>
                                     <p>Rating: {results.rating}</p>
                                 </div>
-                                <div className={product.tags}>
+                                <div className={style.tags}>
                                     <p>Tags: {results.tags}</p>
                                 </div>
-                                <div className={product.reviews}>
+                                <div className={style.reviews}>
 
                                 </div>    
                             </div>
