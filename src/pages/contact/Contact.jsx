@@ -65,7 +65,7 @@ function Contact() {
 
           <div className={style.input}>
             <label htmlFor="message">Message</label>
-            <p className={style.reqMessage}>Min 10 letters</p>
+            <p className={style.reqMessage}>Min 3 letters</p>
             <textarea className={style.inputMessage} name="message" id="message" {...register('message', {
               required: "Message is required",
               minLength: {
@@ -75,7 +75,7 @@ function Contact() {
             })}
             aria-invalid={errors.message ? "true" : "false"} />
 
-            {errors.message && <p className={style.message} role="alert">{errors.message?.message}</p>}
+            {errors.message && <p className={style.errorMessage} role="alert">{errors.message?.message}</p>}
           </div>
 
           <input className={style.submit} type="submit" />
