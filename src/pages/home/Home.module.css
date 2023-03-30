@@ -157,6 +157,10 @@
     width: 90%;
   }
 
+  .card {
+    width: auto;
+  }
+
   .card img {
     display:block;
     height:100%;
