@@ -148,23 +148,12 @@
 /** Media Queries **/
 
 @media screen and (max-width: 768px) {
-  .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 480px) {
   .header {
     display: flex;
     flex-direction: column;
   }
-  .card {
-    width: 80%;
-    
+  .container {
+    margin: 0 auto;
+    width: 90%;
   }
 }
