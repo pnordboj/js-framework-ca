@@ -95,6 +95,24 @@ function Product({ setCartAmount }) {
             })
         }
     }
+    
+    const avrageRating = results.rating;
+    const showRating = () => {
+        if (avrageRating !== undefined) {
+            return (
+                <div className={style.avrageRating}>
+                    <h2>Rating: </h2>
+                    <div className={style.stars}>
+                        {avrageRating >= 1 ? <BsStarFill /> : avrageRating >= 0.5 ? <BsStarHalf /> : <BsStar />}
+                        {avrageRating >= 2 ? <BsStarFill /> : avrageRating >= 1.5 ? <BsStarHalf /> : <BsStar />}
+                        {avrageRating >= 3 ? <BsStarFill /> : avrageRating >= 2.5 ? <BsStarHalf /> : <BsStar />}
+                        {avrageRating >= 4 ? <BsStarFill /> : avrageRating >= 3.5 ? <BsStarHalf /> : <BsStar />}
+                        {avrageRating >= 5 ? <BsStarFill /> : avrageRating >= 4.5 ? <BsStarHalf /> : <BsStar />}
+                    </div>
+                </div>
+            )
+        }
+    }
 
     return (
         <div className={style.main}>
@@ -105,6 +123,7 @@ function Product({ setCartAmount }) {
                     </div>
                     <div className={style.info}>
                         <h1>{results.title}</h1>
+                        {showRating()}
                         <p>{results.description}</p>
                         <div className={style.otherInfo}>
                             <div className={style.priceCart}>

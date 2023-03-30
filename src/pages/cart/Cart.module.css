@@ -76,12 +76,6 @@
 
 @media screen and (max-width: 768px) {
     .cartItem {
-        width: 80%;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .cartItem {
         width: 70%;
         flex-direction: column;
     }
@@ -93,6 +87,6 @@
         padding: 1rem 0;
     }
     .removeButton, .checkoutButton {
-        width: 50%;
+        width: 60%;
     }
 }

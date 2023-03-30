@@ -53,7 +53,7 @@ function Footer() {
   )
 }
 
-function Layout({ children, cartAmount }) {
+function Layout({ cartAmount }) {
   return (
     <div>
       <Header cartAmount={cartAmount} />
