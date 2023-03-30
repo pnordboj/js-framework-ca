@@ -1,0 +1,48 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0rem 2rem;
+}
+
+.returnButton {
+    background-color: #FF6F61;
+    padding: 1rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    width: 20%;
+}
+
+.returnButton p {
+    color: #fff;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 768px) {
+
+    .checkout {
+        width: 90%;
+        text-align: center;
+    }
+
+    .returnButton {
+        width: 60%;
+    }
+
+    .returnButton p {
+        color: #fff;
+    }
+}

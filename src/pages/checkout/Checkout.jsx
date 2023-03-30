@@ -1,44 +1,66 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import style from "./Checkout.module.css";
 
-const Checkout = () => {
+
+const Checkout = ({ setCartAmount }) => {
+
+    const [cart, setCart] = useState([]);
+
+    useEffect(() => {
+        const getCart = async () => {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            if (cart !== null) {
+                setCart(cart);
+                setCartAmount(cart.length);
+            }
+        }
+        getCart();
+    }, [setCartAmount]);
 
     const checkoutSuccess = () => {
         return (
-            <div>
-                <h3>Checkout Complete</h3>
-                <h2>Thank you for your purchase!</h2>
+            <div className={style.checkout}>
+                <h1>Checkout complete</h1>
+                <h2>Thank you for your purchase</h2>
+                <button className={style.returnButton}>
+                    <Link to={'/'}>
+                        <p>Return to Home page</p>
+                    </Link>
+                </button>
             </div>
         )
     }
 
-    const checkoutFailure = () => {
+    const checkoutFail = () => {
         return (
-            <div>
-                <h3>Checkout Failed</h3>
-                <h2>Something went wrong, please try again.</h2>
+            <div className={style.checkout}>
+                <h1>Checkout failed</h1>
+                <h2>Something went wrong, please try again</h2>
+                <button className={style.returnButton}>
+                    <Link to={'/'}>
+                        <p>Return to Home page</p>
+                    </Link>
+                </button>
             </div>
         )
     }
 
-    const checkoutMissing = () => {
-        return (
-            <div>
-                <h3>Checkout Failed</h3>
-                <h2>No items in cart, please add products to cart before checking out.</h2>
-            </div>
-        )
-    }
+    const checkout = () => {
+        if (cart.length === 0) {
+            return checkoutFail();
+        } else {
+            localStorage.removeItem('cart');
+            setCartAmount(0);
+            return checkoutSuccess();
+        }
+    } 
 
-    const exists = localStorage.getItem('cart');
-    if (exists === null) {
-        return checkoutMissing();
-    } else if (exists === '[]') {
-        return checkoutMissing();
-    } else if (exists !== null) {
-        return checkoutSuccess() && localStorage.removeItem('cart');
-    } else {
-        return checkoutFailure();
-    }
+    return (
+        <div className={style.main}>
+            {checkout()}
+        </div>
+    )
 
 }
 

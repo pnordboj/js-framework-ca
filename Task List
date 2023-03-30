@@ -30,17 +30,17 @@
 
    13 [x] The CheckoutPage must list all of the products in the cart, show a total at the bottom and a Checkout button.
 
-   14 [] Clicking the Checkout button will take the user to the CheckoutSuccessPage.
+   14 [x] Clicking the Checkout button will take the user to the CheckoutSuccessPage.
 
-   15 [] The CheckoutSuccessPage should display that the order was successful and clear the cart. There should be a link to go back to the store.
+   15 [x] The CheckoutSuccessPage should display that the order was successful and clear the cart. There should be a link to go back to the store.
 
-   16 [] On the ContactPage, create the following inputs with the following requirements.
+   16 [x] On the ContactPage, create the following inputs with the following requirements.
     16.1 Full name (Minimum number of characters is 3, required)
     16.2 Subject (Minimum number of characters is 3, required)
     16.3 Email (Must be a valid email address, required)
     16.4 Body (Minimum number of characters is 3, required)
     16.5 Submit button
 
-   17 [] console.log the data from the form once validation requirements are met.
+   17 [x] console.log the data from the form once validation requirements are met.
 
-   18 [] Once your project is done, deploy it to Netlify.
+   18 [x] Once your project is done, deploy it to Netlify.
