@@ -42,7 +42,6 @@ function Product({ setCartAmount }) {
             setProduct(results);
         }
         getProduct();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const discountCheck = (product) => {
